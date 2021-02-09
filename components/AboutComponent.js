@@ -3,7 +3,7 @@ import { Text, ScrollView, FlatList, View } from 'react-native';
 import { Card, ListItem } from 'react-native-elements';
 import { LEADERS } from '../shared/leaders';
 
-function RenderHistory() {
+function History() {
     return (
         <Card
             title={"Our History"}
@@ -68,7 +68,7 @@ class About extends Component {
     render() {
         return (
             <ScrollView>
-                <RenderHistory />
+                <History />
                 <RenderLeadership leaders={this.state.leaders} />
             </ScrollView>
         );
