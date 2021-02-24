@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView, StyleSheet, Picker, Switch, Button } from 'react-native';
+import { Text, View, ScrollView, StyleSheet, Picker, Switch, Button, TouchableOpacity } from 'react-native';
 import { Card } from 'react-native-elements';
-import DatePicker from 'react-native-datepicker';
+import DateTimePicker from '@react-native-community/datetimepicker';
+import Moment from 'moment';
+import { Icon } from 'react-native-elements';
 
 class Reservation extends Component {
 
@@ -10,7 +12,9 @@ class Reservation extends Component {
         this.state = {
             guests: 1,
             smoking: false,
-            date: ''
+            date: new Date(),
+            show: false,
+            mode: 'date'
         }
     }
 
@@ -23,7 +27,9 @@ class Reservation extends Component {
         this.setState({
             guests: 1,
             smoking: false,
-            date: ''
+            date: new Date(),
+            show: false,
+            mode: 'date'
         });
     }
 
@@ -57,28 +63,41 @@ class Reservation extends Component {
                 </View>
                 <View style={styles.formRow}>
                     <Text style={styles.formLabel}>Date and Time</Text>
-                    <DatePicker
-                        style={{ flex: 2, marginRight: 20 }}
-                        date={this.state.date.toString()}
-                        format=''
-                        mode='datetime'
-                        placeholder='select date and time'
-                        minDate='2017-01-01'
-                        confirmBtnText='Confirm'
-                        cancelBtnText='Cancel'
-                        customStyles={{
-                            dateIcon: {
-                                position: 'absolute',
-                                left: 0,
-                                top: 4,
-                                marginLeft: 0
-                            },
-                            dateInput: {
-                                marginLeft: 36
-                            }
+                    <TouchableOpacity style={styles.formItem}
+                        style={{
+                            padding: 7,
+                            borderColor: '#512DA8',
+                            borderWidth: 2,
+                            flexDirection: "row"
                         }}
-                        onDateChange={(date) => { this.setState({ date: date }) }}
-                    />
+                        onPress={() => this.setState({ show: true, mode: 'date' })}
+                    >
+                        <Icon type='font-awesome' name='calendar' color='#512DA8' />
+                        <Text >
+                            {' ' + Moment(this.state.date).format('DD-MMM-YYYY h:mm A')}
+                        </Text>
+                    </TouchableOpacity>
+                    {/* Date Time Picker */}
+                    {this.state.show && (
+                        <DateTimePicker
+                            value={this.state.date}
+                            mode={this.state.mode}
+                            minimumDate={new Date()}
+                            minuteInterval={30}
+                            onChange={(event, date) => {
+                                if (date === undefined) {
+                                    this.setState({ show: false });
+                                }
+                                else {
+                                    this.setState({
+                                        show: this.state.mode === "time" ? false : true,
+                                        mode: "time",
+                                        date: new Date(date)
+                                    });
+                                }
+                            }}
+                        />
+                    )}
                 </View>
                 <View style={styles.formRow}>
                     <Button
