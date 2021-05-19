@@ -10,7 +10,9 @@
   "dependencies": {
     "@react-native-community/datetimepicker": "3.0.4",
     "expo": "~40.0.0",
+    "expo-asset": "8.2.1",
     "expo-constants": "~9.3.3",
+    "expo-image-manipulator": "8.4.0",
     "expo-image-picker": "9.2.0",
     "expo-mail-composer": "9.0.0",
     "expo-notifications": "0.8.2",
