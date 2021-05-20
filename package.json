@@ -12,6 +12,7 @@
     "@react-native-community/netinfo": "5.9.7",
     "expo": "~40.0.0",
     "expo-asset": "8.2.1",
+    "expo-calendar": "8.6.0",
     "expo-constants": "~9.3.3",
     "expo-image-manipulator": "8.4.0",
     "expo-image-picker": "9.2.0",
