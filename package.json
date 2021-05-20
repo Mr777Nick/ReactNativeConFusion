@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@react-native-community/datetimepicker": "3.0.4",
+    "@react-native-community/netinfo": "5.9.7",
     "expo": "~40.0.0",
     "expo-asset": "8.2.1",
     "expo-constants": "~9.3.3",
